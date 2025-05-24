@@ -1,0 +1,81 @@
+/* FlowClock App Styles */
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+}
+
+.clock-display {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.clock-time {
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.clock-date {
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.clock-timezones,
+.clock-alarms {
+  margin-bottom: 24px;
+}
+
+.clock-timezones h4,
+.clock-alarms h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timezone-list,
+.alarm-list {
+  margin-bottom: 16px;
+}
+
+.timezone-item,
+.alarm-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.timezone-name,
+.alarm-time {
+  font-weight: 500;
+}
+
+.timezone-time {
+  font-size: 18px;
+}
+
+.alarm-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alarm-day {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.alarm-actions {
+  display: flex;
+  gap: 8px;
+}

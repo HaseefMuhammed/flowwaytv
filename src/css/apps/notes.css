@@ -1,0 +1,114 @@
+/* FlowNotes App Styles */
+.notes-container {
+  display: flex;
+  height: 100%;
+}
+
+.notes-sidebar {
+  width: 240px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .notes-sidebar {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.notes-search {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.notes-item {
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notes-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.notes-item.active {
+  background-color: rgba(0, 120, 215, 0.1);
+  border-left: 3px solid var(--primary-color);
+}
+
+.dark-theme .notes-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .notes-item.active {
+  background-color: rgba(0, 120, 215, 0.2);
+}
+
+.notes-item-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes-item-preview {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes-actions {
+  padding: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+.notes-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.notes-title {
+  margin-bottom: 16px;
+}
+
+.notes-title .form-control {
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  padding: 8px 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notes-title .form-control:focus {
+  box-shadow: none;
+  border-color: var(--primary-color);
+}
+
+.notes-content {
+  flex: 1;
+}
+
+.notes-content .form-control {
+  height: 100%;
+  border: none;
+  padding: 8px 0;
+  resize: none;
+}
+
+.notes-content .form-control:focus {
+  box-shadow: none;
+}

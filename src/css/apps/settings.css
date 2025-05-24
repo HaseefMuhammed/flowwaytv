@@ -1,0 +1,145 @@
+/* FlowSettings App Styles */
+.settings-container {
+  display: flex;
+  height: 100%;
+}
+
+.settings-sidebar {
+  width: 200px;
+  border-right: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .settings-sidebar {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.settings-nav {
+  padding: 16px 0;
+}
+
+.settings-nav-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.settings-nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.settings-nav-item.active {
+  background-color: rgba(0, 120, 215, 0.1);
+  border-left: 3px solid var(--primary-color);
+  font-weight: 500;
+}
+
+.dark-theme .settings-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .settings-nav-item.active {
+  background-color: rgba(0, 120, 215, 0.2);
+}
+
+.settings-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.settings-section {
+  display: none;
+}
+
+.settings-section.active {
+  display: block;
+}
+
+.settings-section h3 {
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.setting-group {
+  margin-bottom: 32px;
+}
+
+.setting-group h5 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.wallpaper-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.wallpaper-option {
+  height: 80px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wallpaper-option:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wallpaper-option.active {
+  border-color: var(--primary-color);
+}
+
+.wallpaper-option[data-wallpaper="default"] {
+  background-image: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+}
+
+.wallpaper-option[data-wallpaper="mountains"] {
+  background-image: url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+}
+
+.wallpaper-option[data-wallpaper="abstract"] {
+  background-image: url('https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+}
+
+.wallpaper-option[data-wallpaper="nature"] {
+  background-image: url('https://images.pexels.com/photos/1287142/pexels-photo-1287142.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+}
+
+.custom-wallpaper {
+  margin-top: 16px;
+}
+
+.profile-picture-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.profile-picture-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-info {
+  line-height: 1.6;
+}

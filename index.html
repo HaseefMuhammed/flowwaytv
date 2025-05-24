@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowway TV OS</title>
+  <link rel="stylesheet" href="src/css/bootstrap.css">
+  <link rel="stylesheet" href="src/css/main.css">
+  <link rel="stylesheet" href="src/css/boot.css">
+  <link rel="stylesheet" href="src/css/desktop.css">
+  <link rel="stylesheet" href="src/css/windows.css">
+  <link rel="stylesheet" href="src/css/apps/notes.css">
+  <link rel="stylesheet" href="src/css/apps/media.css">
+  <link rel="stylesheet" href="src/css/apps/browser.css">
+  <link rel="stylesheet" href="src/css/apps/weather.css">
+  <link rel="stylesheet" href="src/css/apps/clock.css">
+  <link rel="stylesheet" href="src/css/apps/settings.css">
+  <link rel="icon" href="src/images/flowway logo.png" type="image/logo">
+</head>
+<body>
+  <!-- Boot Screen -->
+  <div id="boot-screen" class="active align-items-center text-center">
+    <div class="boot-logo">
+      <div class="logo-container">
+        <div class="logo align-items-center text-center"><img src="src/images/flowway logo.png" alt=""></div>
+      </div>
+      <h1>Flowway TV</h1>
+    </div>
+    <div class="boot-progress align-items-center text-center">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar"></div>
+      </div>
+    </div>
+          <p class="text-center mt-5">Developed by Haseef Muhammed PC</p>
+  </div>
+
+  <!-- Lock Screen -->
+  <div id="lock-screen" class="hidden">
+    <div class="glass-effect">
+    <div class="lock-time"></div>
+    <div class="lock-date"></div>
+    <div class="unlock-prompt">
+      <p>Click to unlock</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop -->
+  <div id="desktop" class="hidden">
+    <div id="desktop-background"></div>
+    <div id="desktop-icons"></div>
+    
+    <!-- App Windows will be dynamically inserted here -->
+    <div id="window-container"></div>
+    
+    <!-- Dock/Taskbar -->
+    <div id="dock-container">
+      <div id="dock">
+        <div class="dock-app" data-app="notes">
+          <div class="dock-icon">N</div>
+          <div class="dock-tooltip">FlowNotes</div>
+        </div>
+        <div class="dock-app" data-app="media">
+          <div class="dock-icon">M</div>
+          <div class="dock-tooltip">FlowMedia</div>
+        </div>
+        <div class="dock-app" data-app="browser">
+          <div class="dock-icon">B</div>
+          <div class="dock-tooltip">FlowBrowser</div>
+        </div>
+        <div class="dock-app" data-app="weather">
+          <div class="dock-icon">W</div>
+          <div class="dock-tooltip">FlowWeather</div>
+        </div>
+        <div class="dock-app" data-app="clock">
+          <div class="dock-icon">C</div>
+          <div class="dock-tooltip">FlowClock</div>
+        </div>
+        <div class="dock-divider"></div>
+        <div class="dock-app" data-app="settings">
+          <div class="dock-icon">S</div>
+          <div class="dock-tooltip">Settings</div>
+        </div>
+      </div>
+      
+      <div id="system-tray">
+        <div id="system-time"></div>
+        <div id="system-date"></div>
+        <div id="system-power">
+          <span class="power-icon">⏻</span>
+          <div class="power-menu">
+            <div class="power-item" data-action="lock">Lock</div>
+            <div class="power-item" data-action="restart">Restart</div>
+            <div class="power-item" data-action="shutdown">Shut Down</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Notification Area -->
+    <div id="notification-container"></div>
+  </div>
+
+  <!-- Templates for Windows -->
+  <template id="window-template">
+    <div class="os-window" data-app="">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <button class="window-control window-close">×</button>
+          <button class="window-control window-minimize">−</button>
+          <button class="window-control window-maximize">□</button>
+        </div>
+        <div class="window-title"></div>
+        <div class="window-actions"></div>
+      </div>
+      <div class="window-content"></div>
+      <div class="window-statusbar">
+        <div class="window-status"></div>
+        <div class="window-resize-handle"></div>
+      </div>
+    </div>
+  </template>
+
+  <!-- App Templates -->
+  <template id="notes-app-template">
+    <div class="notes-container">
+      <div class="notes-sidebar">
+        <div class="notes-search">
+          <input type="text" class="form-control" placeholder="Search notes...">
+        </div>
+        <div class="notes-list"></div>
+        <div class="notes-actions">
+          <button class="btn btn-primary new-note">New Note</button>
+        </div>
+      </div>
+      <div class="notes-editor">
+        <div class="notes-title">
+          <input type="text" class="form-control" placeholder="Title">
+        </div>
+        <div class="notes-content">
+          <textarea class="form-control" placeholder="Start typing..."></textarea>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="media-app-template">
+    <div class="media-container">
+      <div class="media-player">
+        <div class="media-screen">
+          <video id="media-video" controls></video>
+          <audio id="media-audio" controls></audio>
+        </div>
+        <div class="media-controls">
+          <button class="btn btn-primary media-upload">Upload Media</button>
+          <input type="file" id="media-file" accept="video/*,audio/*" hidden>
+        </div>
+      </div>
+      <div class="media-library">
+        <h5>Media Library</h5>
+        <div class="media-items"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="browser-app-template">
+    <div class="browser-container">
+      <div class="browser-toolbar">
+        <button class="btn btn-sm btn-light browser-back">←</button>
+        <button class="btn btn-sm btn-light browser-forward">→</button>
+        <button class="btn btn-sm btn-light browser-reload">↻</button>
+        <div class="browser-address">
+          <input type="text" class="form-control" placeholder="Enter URL...">
+        </div>
+        <button class="btn btn-sm btn-light browser-bookmark">★</button>
+      </div>
+      <div class="browser-view">
+        <iframe id="browser-iframe" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+      </div>
+      <div class="browser-bookmarks">
+        <div class="browser-bookmark-items"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="weather-app-template">
+    <div class="weather-container">
+      <div class="weather-search">
+        <input type="text" class="form-control" placeholder="Enter city name...">
+        <button class="btn btn-primary">Search</button>
+      </div>
+      <div class="weather-current">
+        <div class="weather-location">
+          <h3 class="city-name">City Name</h3>
+          <p class="current-date"></p>
+        </div>
+        <div class="weather-info">
+          <div class="weather-icon"></div>
+          <div class="weather-temp">--°</div>
+          <div class="weather-desc">--</div>
+        </div>
+        <div class="weather-details">
+          <div class="weather-detail">
+            <div class="detail-label">Humidity</div>
+            <div class="detail-value humidity">--%</div>
+          </div>
+          <div class="weather-detail">
+            <div class="detail-label">Wind</div>
+            <div class="detail-value wind">-- km/h</div>
+          </div>
+          <div class="weather-detail">
+            <div class="detail-label">Feels Like</div>
+            <div class="detail-value feels-like">--°</div>
+          </div>
+        </div>
+      </div>
+      <div class="weather-forecast">
+        <h4>5-Day Forecast</h4>
+        <div class="forecast-items"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="clock-app-template">
+    <div class="clock-container">
+      <div class="clock-display">
+        <div class="clock-time"></div>
+        <div class="clock-date"></div>
+      </div>
+      <div class="clock-timezones">
+        <h4>World Clock</h4>
+        <div class="timezone-list"></div>
+        <button class="btn btn-sm btn-primary add-timezone">Add Timezone</button>
+      </div>
+      <div class="clock-alarms">
+        <h4>Alarms</h4>
+        <div class="alarm-list"></div>
+        <button class="btn btn-sm btn-primary add-alarm">Add Alarm</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="settings-app-template">
+    <div class="settings-container">
+      <div class="settings-sidebar">
+        <div class="settings-nav">
+          <div class="settings-nav-item active" data-section="appearance">Appearance</div>
+          <div class="settings-nav-item" data-section="profile">Profile</div>
+          <div class="settings-nav-item" data-section="dock">Dock</div>
+          <div class="settings-nav-item" data-section="sound">Sound</div>
+          <div class="settings-nav-item" data-section="about">About</div>
+        </div>
+      </div>
+      <div class="settings-content">
+        <div class="settings-section active" id="appearance-section">
+          <h3>Appearance</h3>
+          <div class="setting-group">
+            <h5>Theme</h5>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="theme-toggle">
+              <label class="form-check-label" for="theme-toggle">Dark Mode</label>
+            </div>
+          </div>
+          <div class="setting-group">
+            <h5>Wallpaper</h5>
+            <div class="wallpaper-options">
+              <div class="wallpaper-option" data-wallpaper="default"></div>
+              <div class="wallpaper-option" data-wallpaper="mountains"></div>
+              <div class="wallpaper-option" data-wallpaper="abstract"></div>
+              <div class="wallpaper-option" data-wallpaper="nature"></div>
+            </div>
+            <div class="custom-wallpaper">
+              <label for="wallpaper-upload" class="btn btn-outline-primary">Upload Custom</label>
+              <input type="file" id="wallpaper-upload" accept="image/*" hidden>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section" id="profile-section">
+          <h3>Profile</h3>
+          <div class="setting-group">
+            <h5>User Information</h5>
+            <div class="mb-3">
+              <label for="profile-name" class="form-label">Display Name</label>
+              <input type="text" class="form-control" id="profile-name">
+            </div>
+            <div class="mb-3">
+              <label for="profile-picture" class="form-label">Profile Picture</label>
+              <div class="profile-picture-preview"></div>
+              <label for="profile-picture-upload" class="btn btn-outline-primary mt-2">Change Picture</label>
+              <input type="file" id="profile-picture-upload" accept="image/*" hidden>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section" id="dock-section">
+          <h3>Dock</h3>
+          <div class="setting-group">
+            <h5>Position</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dock-position" id="dock-bottom" value="bottom" checked>
+              <label class="form-check-label" for="dock-bottom">Bottom</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dock-position" id="dock-left" value="left">
+              <label class="form-check-label" for="dock-left">Left</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dock-position" id="dock-right" value="right">
+              <label class="form-check-label" for="dock-right">Right</label>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section" id="sound-section">
+          <h3>Sound</h3>
+          <div class="setting-group">
+            <h5>System Volume</h5>
+            <input type="range" class="form-range" min="0" max="100" value="50" id="volume-slider">
+          </div>
+          <div class="setting-group">
+            <h5>Startup Sound</h5>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="startup-sound">
+              <label class="form-check-label" for="startup-sound">Enable Startup Sound</label>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section" id="about-section">
+          <h3>About Flowway TV</h3>
+          <div class="about-info">
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p><strong>Build:</strong> 2025.04.01</p>
+            <p>Flowway TV is a web-based operating system that brings the desktop experience to your browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Notification Template -->
+  <template id="notification-template">
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="src/js/utils/storage.js"></script>
+  <script src="src/js/utils/ui.js"></script>
+  
+  <script src="src/js/core/os.js"></script>
+  <script src="src/js/core/desktop.js"></script>
+  <script src="src/js/core/windows.js"></script>
+  <script src="src/js/core/dock.js"></script>
+  <script src="src/js/core/notifications.js"></script>
+  
+  <script src="src/js/apps/notes.js"></script>
+  <script src="src/js/apps/media.js"></script>
+  <script src="src/js/apps/browser.js"></script>
+  <script src="src/js/apps/weather.js"></script>
+  <script src="src/js/apps/clock.js"></script>
+  <script src="src/js/apps/settings.js"></script>
+  
+  <script src="src/js/main.js"></script>
+</body>
+</html>

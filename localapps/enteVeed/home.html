@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ente Veed</title>
+  <!-- Fav Icon -->
+   <link rel="icon" href="assets/files/ente veed.png" type="images/logo">
+   <!-- CSS [local, Haseef Swift, Bootstrap, ]-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap.css">
+    <!-- Vendor -->
+     <link rel="stylesheet" href="assets/vendor/style.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="a short description about this website">
+    <meta name="keywords" content="keyword 1, keyword 2, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7,">
+    <meta name="author" content="author name">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+<!--  
+MIT License © 2025 Haseef Swift  
+Free to use, modify, and distribute with attribution.  
+No warranty provided. Use at your own risk.  
+Full license: https://opensource.org/licenses/MIT  
+-->
+
+  <!-- Preloader -->
+  <div id="preloader">
+  </div>
+
+  <!-- Start your code from here -->
+
+  <header>
+    <nav class="navbar custom-nav navbar-expand-lg fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo" src="assets/files/fullev.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white bg-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link hv-nav' href='#notification'>Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#currentTime'>Time</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#wifiSpeed'>Wifi Speed</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#temp'>Temperature</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#googleDriveUpload'>Google Drive</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#prayerTime'>Prayer Time</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#memoryCart'>Memory Cart</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#gamePad'>Game Pad</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#OldPhotos'>Old Photos</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='story.html'>Collab Story</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="result.html">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+<div class="p-3"></div>
+<div class="container mt-5">
+  <h1 class="wlcm text-center">Welcome <span id="">Flowway User</span> !!</h1>
+<!-- 1st Row -->
+<div class="row mt-5" id="notification">
+  <div class="col-6 col-md-3 crd-cont">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-bell mb-2"></i>
+        <p class="card-text alert-out" id="messageBox">Waiting for message...</p>
+        <p class="d-none" id="showPassword"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3 crd-cont" id="currentTime">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-clock mb-2"></i>
+        <p id="time" class="card-text">waiting for main.js</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3 crd-cont" id="wifiSpeed">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-wifi mb-2"></i>
+        <p class="card-text" id="download-speed">Loading network speed...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3 crd-cont" id="temp">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-cloud mb-2"></i>
+        <p class="card-text" id="temperature">Loading temperature...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2nd Row -->
+<div class="row mt-4">
+  <div class="col-12 col-md-6 crd-cont" id="googleDriveUpload">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-database mb-3"></i>
+        <a href="https://drive.google.com/drive/folders/1p9wF9H62QiDnbQHLJtPNAXobXu1jVn8z?usp=sharing" target="_blank">
+          <button class="btn btn-ev btn-dark mt-2 w-100">Upload</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 crd-cont" id="googleDriveFiles">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-file mb-3"></i>
+        <iframe src="https://drive.google.com/embeddedfolderview?id=1p9wF9H62QiDnbQHLJtPNAXobXu1jVn8z#list" style="width:100%; height:300px; border:0;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3rd Row -->
+<div class="row mt-4">
+  <div class="col-12 col-md-3 crd-cont" id="prayerTime">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-star-and-crescent mb-3"></i>
+        <iframe id="iframe" title="prayerWidget" class="widget-m-top" style="height: 358px; border: 1px solid #ddd; width: 100%;" scrolling="no" src="https://www.islamicfinder.org/prayer-widget/1265873/shafi/3/0/18.0/18.0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3 crd-cont" id="memoryCart">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-cart-shopping mb-3"></i>
+        <a href="memory-cart.html">
+          <button class="btn btn-ev btn-dark mt-2 w-100">Memory Cart</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3 crd-cont" id="gamePad">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-gamepad mb-3"></i>
+        <a href="gamepad.html">
+          <button class="btn btn-ev btn-dark mt-2 w-100">Game Pad</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-3 crd-cont" id="OldPhotos">
+    <div class="card home-crd mb-3 h-100">
+      <div class="card-body d-flex flex-column justify-content-center text-center">
+        <i class="fa-solid fa-icons fa-photo-film mb-3"></i>
+        <a href="#">
+          <button class="btn btn-ev btn-dark mt-2 w-100">Old Photos</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  
+<div class="p-5"></div>
+
+<!-- Bottom Navbar -->
+<nav class="bottom-navbar d-flex justify-content-around align-items-center py-2">
+  <a href="home.html" class="nav-link active d-flex flex-column align-items-center">
+    <i class="bi bi-house-door-fill fs-4"></i>
+    <span>Home</span>
+  </a>
+  <a href="settings.html" class="nav-link d-flex flex-column align-items-center">
+    <i class="bi bi-gear-fill fs-4"></i>
+    <span>Settings</span>
+  </a>
+  <!-- <a href="#" class="nav-link d-flex flex-column align-items-center">
+    <img id="" src="assets/files/ente veed.png" alt="Profile" class="profile-img">
+    <span>Profile</span>
+  </a> -->
+</nav>
+
+
+
+
+
+  <!-- Scripts [local, Haseef Swift, Bootstrap, Vendor] -->
+   <script src="script.js"></script>
+   <script src="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.js"></script>
+   <script src="assets/vendor/bootstrap.js"></script>
+   <script src="assets/vendor/script.js"></script>
+   <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script>
+
+   <script>
+    document.getElementById("showUsername").innerText = localStorage.getItem("username");
+    document.getElementById("showPassword").innerText = localStorage.getItem("password");
+    document.getElementById("showImage").src = localStorage.getItem("image");
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+  // ✅ Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAjwdx4IBwZOFVlG3qzXhESY7P_0MGnFtg",
+    authDomain: "enteveed-alert.firebaseapp.com",
+    databaseURL: "https://enteveed-alert-default-rtdb.firebaseio.com",
+    projectId: "enteveed-alert",
+    storageBucket: "enteveed-alert.firebasestorage.app",
+    messagingSenderId: "202957372238",
+    appId: "1:202957372238:web:83681723e9ef98524ffc1f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const msgRef = ref(db, "message/");
+
+  // Live message listener
+  onValue(msgRef, (snapshot) => {
+    const data = snapshot.val();
+    document.getElementById("messageBox").innerText = data?.text || "No message yet.";
+  });
+</script>
+
+<script src="main.js"></script>
+</body>
+</html>

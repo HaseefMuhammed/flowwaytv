@@ -115,6 +115,8 @@ const FlowOS = {
     FlowBrowser.init();
     FlowWeather.init();
     FlowClock.init();
+    FlowCalculator.init();
+    FlowEnteveed.init();
     FlowSettings.init();
   },
   
@@ -238,7 +240,7 @@ const FlowOS = {
       bootScreen.classList.remove('fade-out');
       
       setTimeout(() => {
-        document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000; color: #fff;"><h1>Flowway TV is turned off , Thankyou</h1></div>';
+        document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000; color: #fff;"><h1>Flowway TV is turned off</h1></div>';
       }, 1000);
     }, 2000);
   },
@@ -263,6 +265,12 @@ const FlowOS = {
         break;
       case 'clock':
         FlowClock.open();
+        break;
+      case 'calculator':
+        FlowCalculator.open();
+        break;
+        case 'enteveed':
+        FlowEnteveed.open();
         break;
       case 'settings':
         FlowSettings.open();

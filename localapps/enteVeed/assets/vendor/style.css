@@ -1,0 +1,15 @@
+/* MIT License © 2025 Haseef Swift   
+Free to use, modify, and distribute with attribution.  
+No warranty provided. Use at your own risk.  
+Full license: https://opensource.org/licenses/MIT  */
+
+
+/* Preloader */
+#preloader{
+  background: white url(files/loading.gif) no-repeat center center;
+  background-size: 50%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}

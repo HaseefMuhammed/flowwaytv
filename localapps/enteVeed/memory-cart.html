@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ente Veed</title>
+  <!-- Fav Icon -->
+   <link rel="icon" href="assets/files/ente veed.png" type="images/logo">
+   <!-- CSS [local, Haseef Swift, Bootstrap, ]-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap.css">
+    <!-- Vendor -->
+     <link rel="stylesheet" href="assets/vendor/style.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="a short description about this website">
+    <meta name="keywords" content="keyword 1, keyword 2, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7,">
+    <meta name="author" content="author name">
+    <meta name="robots" content="index, follow">
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .cart-card {
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      .invoice {
+        background-color: #fff;
+        padding: 20px;
+      }
+    </style>
+</head>
+<body>
+<!--  
+MIT License © 2025 Haseef Swift  
+Free to use, modify, and distribute with attribution.  
+No warranty provided. Use at your own risk.  
+Full license: https://opensource.org/licenses/MIT  
+-->
+
+  <!-- Preloader -->
+  <div id="preloader">
+  </div>
+
+  <!-- Start your code from here -->
+
+  <header>
+    <nav class="navbar custom-nav navbar-expand-lg fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo" src="assets/files/fullev.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white bg-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link hv-nav' href='#notification'>Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#currentTime'>Time</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#wifiSpeed'>Wifi Speed</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#temp'>Temperature</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#googleDriveUpload'>Google Drive</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#prayerTime'>Prayer Time</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#memoryCart'>Memory Cart</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#gamePad'>Game Pad</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='#OldPhotos'>Old Photos</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current='page' class='nav-link' href='story.html'>Collab Story</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="result.html">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+  <p class="d-none" id="showPassword"></p>
+  <p class="d-none" id="showUsername"></p>
+<div class="p-4"></div>
+
+<div class="container my-4">
+  <h2 class="text-center mb-4 wlcm">🛒 Memory Cart - Shopping Reminder</h2>
+
+  <!-- Input Form -->
+  <div class="card cart-card mb-4">
+    <div class="card-body">
+      <form id="itemForm" class="row g-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" id="itemName" placeholder="Item Name" required>
+        </div>
+        <div class="col-md-3">
+          <input type="number" class="form-control" id="itemQty" placeholder="Quantity" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" id="itemNote" placeholder="Note (Optional)">
+        </div>
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-primary">Add to Memory</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Invoice -->
+  <div class="card cart-card mb-3">
+    <div class="card-body invoice" id="invoiceArea">
+      <h5 class="mb-3">🧾 Invoice Memory</h5>
+      <table class="table table-bordered table-hover" id="memoryTable">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Note</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Items will be appended here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Export Button -->
+  <div class="text-end">
+    <button class="btn btn-success" id="exportPdf">📄 Export as PDF</button>
+  </div>
+</div>
+
+  
+<div class="p-5"></div>
+
+<!-- Bottom Navbar -->
+<nav class="bottom-navbar d-flex justify-content-around align-items-center py-2">
+  <a href="home.html" class="nav-link d-flex flex-column align-items-center">
+    <i class="bi bi-house-door-fill fs-4"></i>
+    <span>Home</span>
+  </a>
+  <a href="settings.html" class="nav-link d-flex flex-column align-items-center">
+    <i class="bi bi-gear-fill fs-4"></i>
+    <span>Settings</span>
+  </a>
+  <!-- <a href="#" class="nav-link d-flex flex-column align-items-center">
+    <img id="" src="assets/files/ente veed.png" alt="Profile" class="profile-img">
+    <span>Profile</span>
+  </a> -->
+</nav>
+
+
+
+  <!-- Scripts [local, Haseef Swift, Bootstrap, Vendor] -->
+   <script src="script.js"></script>
+   <script src="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.js"></script>
+   <script src="assets/vendor/bootstrap.js"></script>
+   <script src="assets/vendor/script.js"></script>
+   <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+   <script>
+    document.getElementById("showUsername").innerText = localStorage.getItem("username");
+    document.getElementById("showPassword").innerText = localStorage.getItem("password");
+    document.getElementById("showImage").src = localStorage.getItem("image");
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
+
+<script>
+  let count = 0;
+
+  $(document).ready(function() {
+    $('#itemForm').on('submit', function(e) {
+      e.preventDefault();
+      const itemName = $('#itemName').val().trim();
+      const itemQty = $('#itemQty').val().trim();
+      const itemNote = $('#itemNote').val().trim();
+
+      if (itemName && itemQty) {
+        count++;
+        const row = `
+          <tr>
+            <td>${count}</td>
+            <td>${itemName}</td>
+            <td>${itemQty}</td>
+            <td>${itemNote}</td>
+            <td><button class="btn btn-sm btn-danger delete-btn">Delete</button></td>
+          </tr>
+        `;
+        $('#memoryTable tbody').append(row);
+        $('#itemForm')[0].reset();
+      }
+    });
+
+    // Delete item
+    $('#memoryTable').on('click', '.delete-btn', function() {
+      $(this).closest('tr').remove();
+      updateRowNumbers();
+    });
+
+    // Export as PDF
+    $('#exportPdf').click(function () {
+      const element = document.getElementById('invoiceArea');
+      const opt = {
+        margin:       0.5,
+        filename:     'memory-cart.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    });
+
+    // Update row numbers
+    function updateRowNumbers() {
+      count = 0;
+      $('#memoryTable tbody tr').each(function() {
+        count++;
+        $(this).find('td:first').text(count);
+      });
+    }
+  });
+</script>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>

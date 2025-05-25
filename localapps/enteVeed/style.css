@@ -1,0 +1,152 @@
+/* MIT License © 2025 Haseef Swift   
+Free to use, modify, and distribute with attribution.  
+No warranty provided. Use at your own risk.  
+Full license: https://opensource.org/licenses/MIT  */
+
+/* Start your code from here */
+/* VARIABLES */
+:root {
+  --c-dark: #212529;
+  --c-brand: #fc0197;
+  --c-brand-light: #f94db4;
+  --c-body: #5d5b5bc7;
+  --font-base: "ClashDisplay", sans-serif;
+  --transition: all 0.5s ease;
+}
+
+
+.logo{
+  width: 5em;
+}
+.custom-nav{
+  background: black !important ;
+}
+.custom-nav .nav-link{
+  color: white !important;
+}
+.custom-nav .active, .act{
+  font-weight: bolder !important;
+}
+.wlcm{
+  font-family: var(--font-base);
+  font-weight: bolder;
+  text-transform: capitalize;
+  color: white;
+}
+/* Icons */
+.fa-icons{
+  color: var(--c-brand);
+  font-size: 4em;
+}
+.card-text{
+  font-family: var(--font-base);
+  color: white;
+  font-size: 1.2em;
+  margin-top: 2px;
+}
+.home-crd{
+  background-color: var(--c-body) !important;
+}
+.card{
+  min-height: 173px !important;
+}
+
+/* Bottom nav */
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.bottom-navbar .nav-link {
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+}
+.bottom-navbar .nav-link.active {
+  color: var(--c-brand);
+}
+.profile-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #f0f;
+}
+.bottom-navbar .nav-link:hover{
+  color: var(--c-brand) !important;
+}
+
+/* Others */
+
+.alert-out{
+  text-transform: capitalize;
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: var(--c-brand);
+  font-family: var(--font-base);
+  background-color: rgba(255, 255, 255, 0.381);
+}
+#time{
+  font-size: 2em;
+  font-family: var(--font-base);
+  font-weight: bolder;
+}
+#download-speed{
+  font-size: 1.5em;
+  font-weight: bolder;
+  font-family: var(--font-base);
+}
+#temperature{
+  font-size: 2em;
+  font-weight: bolder;
+  font-family: var(--font-base);
+}
+
+/* bg */
+
+body{
+  background-image: url(assets/files/bg2.avif);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.7); /* Light blur effect */
+}
+
+/* Custom btn */
+
+.btn-ev{
+  background-color: var(--c-brand) !important;
+  border: none !important;
+  font-weight: bolder !important;
+  font-size: 1.5em !important;
+}
+
+.crd-cont{
+  margin-top: 1em !important;
+}
+iframe{
+  border: none;
+}
+
+.hv-nav :hover{
+  color: var(--c-brand) !important;
+}
+
+
+/* Preload for data submitting */
+
+/* Preloader */
+#loading{
+  background: white url(assets/files/loading.gif) no-repeat center center;
+  background-size: 50%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  display: none; /* Initially hidden */
+}

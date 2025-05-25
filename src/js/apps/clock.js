@@ -7,6 +7,7 @@ const FlowClock = {
   timezones: [],
   alarms: [],
   clockInterval: null,
+  alarmSound: new Audio('/audio/alarm.mp3'),
   
   /**
    * Initialize the app
@@ -15,6 +16,9 @@ const FlowClock = {
     // Load timezones and alarms from storage
     this.loadTimezones();
     this.loadAlarms();
+    
+    // Configure alarm sound
+    this.alarmSound.loop = true;
   },
   
   /**
@@ -271,10 +275,32 @@ const FlowClock = {
    */
   triggerAlarm(alarm) {
     // Show notification
-    FlowUI.showNotification(`Alarm: ${alarm.label || 'Alarm'}`, 'info', 0);
+    const notification = FlowUI.showNotification(`Alarm: ${alarm.label || 'Alarm'}`, 'info', 0);
     
     // Play alarm sound
-    // TODO: Implement alarm sound
+    this.alarmSound.currentTime = 0;
+    this.alarmSound.play();
+    
+    // Add stop button to notification
+    if (notification) {
+      const stopBtn = document.createElement('button');
+      stopBtn.className = 'btn btn-sm btn-primary ms-2';
+      stopBtn.textContent = 'Stop Alarm';
+      stopBtn.addEventListener('click', () => {
+        this.stopAlarmSound();
+        notification.remove();
+      });
+      
+      notification.querySelector('.toast-body').appendChild(stopBtn);
+    }
+  },
+  
+  /**
+   * Stop the alarm sound
+   */
+  stopAlarmSound() {
+    this.alarmSound.pause();
+    this.alarmSound.currentTime = 0;
   },
   
   /**

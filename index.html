@@ -14,7 +14,11 @@
   <link rel="stylesheet" href="src/css/apps/browser.css">
   <link rel="stylesheet" href="src/css/apps/weather.css">
   <link rel="stylesheet" href="src/css/apps/clock.css">
+  <link rel="stylesheet" href="src/css/apps/calculator.css">
   <link rel="stylesheet" href="src/css/apps/settings.css">
+  <link rel="stylesheet" href="src/css/apps/enteveed.css">
+  <!-- Fontawsome -->
+   <link rel="stylesheet" href="src/css/fontawesome-free-6.7.2-web/css/all.min.css">
   <link rel="icon" href="src/images/flowway logo.png" type="image/logo">
 </head>
 <body>
@@ -57,28 +61,42 @@
     <div id="dock-container">
       <div id="dock">
         <div class="dock-app" data-app="notes">
-          <div class="dock-icon">N</div>
+          <div class="dock-icon"><i class="fa-solid fa-note-sticky"></i></div>
           <div class="dock-tooltip">FlowNotes</div>
         </div>
         <div class="dock-app" data-app="media">
-          <div class="dock-icon">M</div>
+          <div class="dock-icon"><i class="fa-solid fa-photo-film"></i></div>
           <div class="dock-tooltip">FlowMedia</div>
         </div>
         <div class="dock-app" data-app="browser">
-          <div class="dock-icon">B</div>
+          <div class="dock-icon"><i class="fa-brands fa-searchengin"></i></div>
           <div class="dock-tooltip">FlowBrowser</div>
         </div>
         <div class="dock-app" data-app="weather">
-          <div class="dock-icon">W</div>
+          <div class="dock-icon"><i class="fa-solid fa-cloud"></i></div>
           <div class="dock-tooltip">FlowWeather</div>
         </div>
+        <!-- 
+                <div class="dock-app" data-app="weather">
+          <div class="dock-icon">We</div>
+          <div class="dock-tooltip">FlowWeather</div>
+        </div>
+        -->
         <div class="dock-app" data-app="clock">
-          <div class="dock-icon">C</div>
+          <div class="dock-icon"><i class="fa-solid fa-clock"></i></div>
           <div class="dock-tooltip">FlowClock</div>
+        </div>
+         <div class="dock-app" data-app="calculator">
+          <div class="dock-icon"><i class="fa-solid fa-calculator"></i></div>
+          <div class="dock-tooltip">FlowCalc</div>
+        </div>
+         <div class="dock-app" data-app="enteveed">
+          <div class="dock-icon"><img style="width: 100%;" src="public/images/ente veed.png" alt=""></div>
+          <div class="dock-tooltip">FlowEnteVeed</div>
         </div>
         <div class="dock-divider"></div>
         <div class="dock-app" data-app="settings">
-          <div class="dock-icon">S</div>
+          <div class="dock-icon"><i class="fa-solid fa-gear"></i></div>
           <div class="dock-tooltip">Settings</div>
         </div>
       </div>
@@ -237,6 +255,49 @@
     </div>
   </template>
 
+  <!-- Calculator -->
+<!-- Add calculator template -->
+<template id="calculator-app-template">
+  <div class="calculator-container">
+    <div class="calc-display">0</div>
+    <div class="calc-buttons">
+      <button class="calc-btn function" data-action="clear">AC</button>
+      <button class="calc-btn function" data-action="negate">±</button>
+      <button class="calc-btn function" data-action="percent">%</button>
+      <button class="calc-btn operator" data-operator="÷">÷</button>
+      
+      <button class="calc-btn" data-number="7">7</button>
+      <button class="calc-btn" data-number="8">8</button>
+      <button class="calc-btn" data-number="9">9</button>
+      <button class="calc-btn operator" data-operator="×">×</button>
+      
+      <button class="calc-btn" data-number="4">4</button>
+      <button class="calc-btn" data-number="5">5</button>
+      <button class="calc-btn" data-number="6">6</button>
+      <button class="calc-btn operator" data-operator="-">−</button>
+      
+      <button class="calc-btn" data-number="1">1</button>
+      <button class="calc-btn" data-number="2">2</button>
+      <button class="calc-btn" data-number="3">3</button>
+      <button class="calc-btn operator" data-operator="+">+</button>
+      
+      <button class="calc-btn zero" data-number="0">0</button>
+      <button class="calc-btn" data-action="decimal">.</button>
+      <button class="calc-btn operator" data-action="equals">=</button>
+    </div>
+  </div>
+</template>
+
+
+<!-- Ente veed -->
+
+<template id="enteveed-app-template">
+  <div class="enteveed-app">
+    <iframe src="localapps/enteVeed/home.html" frameborder="0" style="width: 100%; height: 100%; border: none;"></iframe>
+  </div>
+</template>
+
+
   <template id="settings-app-template">
     <div class="settings-container">
       <div class="settings-sidebar">
@@ -323,9 +384,10 @@
         <div class="settings-section" id="about-section">
           <h3>About Flowway TV</h3>
           <div class="about-info">
-            <p><strong>Version:</strong> 1.0.0</p>
-            <p><strong>Build:</strong> 2025.04.01</p>
+            <p><strong>Version:</strong> 1.1</p>
+            <p><strong>Build:</strong> 25.05.2025</p>
             <p>Flowway TV is a web-based operating system that brings the desktop experience to your browser.</p>
+            <p><strong>Developed:</strong> Haseef Muhammed PC</p>
           </div>
         </div>
       </div>
@@ -361,8 +423,13 @@
   <script src="src/js/apps/browser.js"></script>
   <script src="src/js/apps/weather.js"></script>
   <script src="src/js/apps/clock.js"></script>
+  <script src="src/js/apps/calculator.js"></script>
   <script src="src/js/apps/settings.js"></script>
+  <script src="src/js/apps/enteveed.js"></script>
   
   <script src="src/js/main.js"></script>
+
+  <!-- Icons -->
+   <!-- <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script> -->
 </body>
 </html>

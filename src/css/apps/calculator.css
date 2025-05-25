@@ -1,0 +1,87 @@
+/* FlowCalculator App Styles */
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1c1c1c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.calc-display {
+  height: 120px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+  font-size: 48px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  flex: 1;
+  background-color: #1c1c1c;
+}
+
+.calc-btn {
+  border: none;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #323232;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  user-select: none;
+}
+
+.calc-btn:hover {
+  background-color: #404040;
+}
+
+.calc-btn:active {
+  background-color: #505050;
+}
+
+.calc-btn.function {
+  background-color: #a5a5a5;
+  color: #1c1c1c;
+}
+
+.calc-btn.function:hover {
+  background-color: #b5b5b5;
+}
+
+.calc-btn.function:active {
+  background-color: #c5c5c5;
+}
+
+.calc-btn.operator {
+  background-color: #ff9f0a;
+  font-size: 28px;
+}
+
+.calc-btn.operator:hover {
+  background-color: #ffb13d;
+}
+
+.calc-btn.operator:active {
+  background-color: #ffc270;
+}
+
+.calc-btn.zero {
+  grid-column: span 2;
+}
+
+/* Dark theme support */
+.dark-theme .calculator-container {
+  background-color: #1c1c1c;
+}

@@ -44,7 +44,7 @@ const FlowBrowser = {
     this.setupEvents(window);
     
     // Load default page or last visited
-    const lastUrl = FlowStorage.get('browserLastUrl', 'https://duckduckgo.com/');
+    const lastUrl = FlowStorage.get('browserLastUrl', 'https://www.dogpile.com/');
     this.navigateTo(lastUrl);
     
     // Populate bookmarks

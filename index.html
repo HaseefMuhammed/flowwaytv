@@ -144,24 +144,21 @@
     </div>
   </template>
 
-  <template id="media-app-template">
-    <div class="media-container">
-      <div class="media-player">
-        <div class="media-screen">
-          <video id="media-video" controls></video>
-          <audio id="media-audio" controls></audio>
-        </div>
-        <div class="media-controls">
-          <button class="btn btn-primary media-upload">Upload Media</button>
-          <input type="file" id="media-file" accept="video/*,audio/*" hidden>
-        </div>
-      </div>
-      <div class="media-library">
-        <h5>Media Library</h5>
-        <div class="media-items"></div>
+  <!-- Update media-app-template section -->
+<template id="media-app-template">
+  <div class="media-container">
+    <div class="media-player">
+      <div class="media-screen">
+        <video id="media-video" controls></video>
+        <audio id="media-audio" controls></audio>
       </div>
     </div>
-  </template>
+    <div class="media-library">
+      <h5>Media Library</h5>
+      <div class="media-items"></div>
+    </div>
+  </div>
+</template>
 
   <template id="browser-app-template">
     <div class="browser-container">

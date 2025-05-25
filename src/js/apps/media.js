@@ -1,18 +1,25 @@
 /**
  * FlowMedia App for Flowway TV OS
- * A local media player for audio and video files
+ * A media player for predefined audio and video files
  */
 const FlowMedia = {
   appId: 'media',
-  mediaLibrary: [],
+  mediaLibrary: [
+    {
+      id: 'sample-video-1',
+      name: 'Sample Video 1',
+      type: 'video/mp4',
+      url: 'public/videos/test.mp4',
+      addedAt: new Date().toISOString()
+    }
+  ],
   currentMedia: null,
   
   /**
    * Initialize the app
    */
   init() {
-    // Load media library from storage
-    this.loadMediaLibrary();
+    // No need to load from storage since we're using predefined media
   },
   
   /**
@@ -43,6 +50,11 @@ const FlowMedia = {
     
     // Populate media library
     this.populateMediaLibrary();
+    
+    // Auto-play first media
+    if (this.mediaLibrary.length > 0) {
+      this.playMedia(this.mediaLibrary[0].id);
+    }
   },
   
   /**
@@ -51,22 +63,6 @@ const FlowMedia = {
    */
   setupEvents(windowElement) {
     if (!windowElement) return;
-    
-    // Upload button
-    const uploadBtn = windowElement.querySelector('.media-upload');
-    const fileInput = windowElement.querySelector('#media-file');
-    
-    if (uploadBtn && fileInput) {
-      uploadBtn.addEventListener('click', () => {
-        fileInput.click();
-      });
-      
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
-          this.handleFileUpload(e.target.files[0]);
-        }
-      });
-    }
     
     // Video player
     const videoPlayer = windowElement.querySelector('#media-video');
@@ -85,20 +81,6 @@ const FlowMedia = {
         this.playNextMedia();
       });
     }
-  },
-  
-  /**
-   * Load media library from storage
-   */
-  loadMediaLibrary() {
-    this.mediaLibrary = FlowStorage.get('mediaLibrary', []);
-  },
-  
-  /**
-   * Save media library to storage
-   */
-  saveMediaLibrary() {
-    FlowStorage.set('mediaLibrary', this.mediaLibrary);
   },
   
   /**
@@ -126,13 +108,7 @@ const FlowMedia = {
       
       const thumbnail = document.createElement('div');
       thumbnail.className = 'media-item-thumbnail';
-      
-      // Display different icon based on media type
-      if (media.type.startsWith('video')) {
-        thumbnail.textContent = '▶';
-      } else if (media.type.startsWith('audio')) {
-        thumbnail.textContent = '♪';
-      }
+      thumbnail.textContent = '▶';
       
       const title = document.createElement('div');
       title.className = 'media-item-title';
@@ -146,131 +122,8 @@ const FlowMedia = {
         this.playMedia(media.id);
       });
       
-      // Add right-click context menu
-      mediaItem.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        this.showMediaContextMenu(media.id, e.clientX, e.clientY);
-      });
-      
       mediaItems.appendChild(mediaItem);
     });
-  },
-  
-  /**
-   * Show context menu for a media item
-   * @param {string} mediaId - ID of the media
-   * @param {number} x - X position
-   * @param {number} y - Y position
-   */
-  showMediaContextMenu(mediaId, x, y) {
-    // Remove any existing context menu
-    const existingMenu = document.querySelector('.media-context-menu');
-    if (existingMenu) {
-      existingMenu.remove();
-    }
-    
-    // Create context menu
-    const menu = document.createElement('div');
-    menu.className = 'media-context-menu';
-    menu.style.position = 'fixed';
-    menu.style.left = `${x}px`;
-    menu.style.top = `${y}px`;
-    menu.style.zIndex = '10000';
-    menu.style.backgroundColor = 'var(--surface-color)';
-    menu.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-    menu.style.borderRadius = '4px';
-    menu.style.padding = '4px 0';
-    
-    // Add menu items
-    const playItem = document.createElement('div');
-    playItem.textContent = 'Play';
-    playItem.style.padding = '8px 16px';
-    playItem.style.cursor = 'pointer';
-    playItem.style.transition = 'background-color 0.2s';
-    
-    playItem.addEventListener('mouseover', () => {
-      playItem.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-    });
-    
-    playItem.addEventListener('mouseout', () => {
-      playItem.style.backgroundColor = 'transparent';
-    });
-    
-    playItem.addEventListener('click', () => {
-      this.playMedia(mediaId);
-      menu.remove();
-    });
-    
-    const deleteItem = document.createElement('div');
-    deleteItem.textContent = 'Delete';
-    deleteItem.style.padding = '8px 16px';
-    deleteItem.style.cursor = 'pointer';
-    deleteItem.style.transition = 'background-color 0.2s';
-    
-    deleteItem.addEventListener('mouseover', () => {
-      deleteItem.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-    });
-    
-    deleteItem.addEventListener('mouseout', () => {
-      deleteItem.style.backgroundColor = 'transparent';
-    });
-    
-    deleteItem.addEventListener('click', () => {
-      this.deleteMedia(mediaId);
-      menu.remove();
-    });
-    
-    menu.appendChild(playItem);
-    menu.appendChild(deleteItem);
-    
-    // Add to document
-    document.body.appendChild(menu);
-    
-    // Remove on click outside
-    document.addEventListener('click', function hideMenu() {
-      menu.remove();
-      document.removeEventListener('click', hideMenu);
-    });
-  },
-  
-  /**
-   * Handle file upload
-   * @param {File} file - The uploaded file
-   */
-  handleFileUpload(file) {
-    // Check if it's a media file
-    if (!file.type.startsWith('video/') && !file.type.startsWith('audio/')) {
-      FlowUI.showNotification('Only video and audio files are supported', 'warning');
-      return;
-    }
-    
-    // Create a blob URL for the file
-    const url = URL.createObjectURL(file);
-    
-    // Create media object
-    const mediaItem = {
-      id: this.generateId(),
-      name: file.name,
-      type: file.type,
-      url: url,
-      size: file.size,
-      addedAt: new Date().toISOString()
-    };
-    
-    // Add to library
-    this.mediaLibrary.push(mediaItem);
-    
-    // Save library
-    this.saveMediaLibrary();
-    
-    // Refresh library UI
-    this.populateMediaLibrary();
-    
-    // Play the new media
-    this.playMedia(mediaItem.id);
-    
-    // Show notification
-    FlowUI.showNotification(`Added "${file.name}" to library`, 'success');
   },
   
   /**
@@ -328,51 +181,5 @@ const FlowMedia = {
     
     // Play next media
     this.playMedia(this.mediaLibrary[nextIndex].id);
-  },
-  
-  /**
-   * Delete a media item
-   * @param {string} mediaId - ID of the media to delete
-   */
-  deleteMedia(mediaId) {
-    // Find the media
-    const media = this.mediaLibrary.find(m => m.id === mediaId);
-    if (!media) return;
-    
-    // If it's the current media, stop playback
-    if (this.currentMedia && this.currentMedia.id === mediaId) {
-      const window = FlowWindows.getWindow(this.appId);
-      if (window) {
-        const videoPlayer = window.querySelector('#media-video');
-        const audioPlayer = window.querySelector('#media-audio');
-        
-        videoPlayer.pause();
-        audioPlayer.pause();
-        videoPlayer.src = '';
-        audioPlayer.src = '';
-        
-        this.currentMedia = null;
-      }
-    }
-    
-    // Remove from library
-    this.mediaLibrary = this.mediaLibrary.filter(m => m.id !== mediaId);
-    
-    // Save library
-    this.saveMediaLibrary();
-    
-    // Refresh library UI
-    this.populateMediaLibrary();
-    
-    // Show notification
-    FlowUI.showNotification(`Removed "${media.name}" from library`, 'info');
-  },
-  
-  /**
-   * Generate a unique ID
-   * @returns {string} - Unique ID
-   */
-  generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
   }
 };

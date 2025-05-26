@@ -7,7 +7,7 @@ const FlowClock = {
   timezones: [],
   alarms: [],
   clockInterval: null,
-  alarmSound: new Audio('/audio/alarm.mp3'),
+  alarmSound: new Audio('public/audio/alarm.mp3'),
   
   /**
    * Initialize the app
@@ -276,11 +276,13 @@ const FlowClock = {
   triggerAlarm(alarm) {
     // Show notification
     const notification = FlowUI.showNotification(`Alarm: ${alarm.label || 'Alarm'}`, 'info', 0);
-    
     // Play alarm sound
     this.alarmSound.currentTime = 0;
-    this.alarmSound.play();
-    
+    this.alarmSound.play().catch(() => {
+      // Fallback: try to reload and play again
+      this.alarmSound.load();
+      this.alarmSound.play().catch(() => {});
+    });
     // Add stop button to notification
     if (notification) {
       const stopBtn = document.createElement('button');
@@ -289,10 +291,54 @@ const FlowClock = {
       stopBtn.addEventListener('click', () => {
         this.stopAlarmSound();
         notification.remove();
+        // Also close the alarm modal if open
+        const alarmModal = document.getElementById('alarmRingModal');
+        if (alarmModal) {
+          const bsModal = bootstrap.Modal.getInstance(alarmModal);
+          if (bsModal) bsModal.hide();
+        }
       });
-      
       notification.querySelector('.toast-body').appendChild(stopBtn);
     }
+
+    // Show alarm popup modal
+    let alarmModal = document.getElementById('alarmRingModal');
+    if (alarmModal) alarmModal.remove(); // Remove any existing
+    alarmModal = document.createElement('div');
+    alarmModal.className = 'modal fade';
+    alarmModal.id = 'alarmRingModal';
+    alarmModal.setAttribute('tabindex', '-1');
+    alarmModal.setAttribute('aria-labelledby', 'alarmRingModalLabel');
+    alarmModal.setAttribute('aria-hidden', 'true');
+    alarmModal.innerHTML = `
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="alarmRingModalLabel">Alarm</h5>
+          </div>
+          <div class="modal-body text-center">
+            <div style="font-size:2rem;font-weight:bold;">${alarm.label || 'Alarm'}</div>
+            <div style="font-size:1.5rem;">${new Date(alarm.time).toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit'})}</div>
+            <div class="mt-3">
+              <button type="button" class="btn btn-danger btn-lg" id="stop-alarm-popup-btn">Stop Alarm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(alarmModal);
+    const bsModal = new bootstrap.Modal(alarmModal, {backdrop: 'static', keyboard: false});
+    bsModal.show();
+    // Stop alarm on button click
+    alarmModal.querySelector('#stop-alarm-popup-btn').addEventListener('click', () => {
+      this.stopAlarmSound();
+      bsModal.hide();
+      if (notification) notification.remove();
+    });
+    // Clean up modal DOM after hidden
+    alarmModal.addEventListener('hidden.bs.modal', () => {
+      alarmModal.remove();
+    });
   },
   
   /**

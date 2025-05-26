@@ -79,3 +79,40 @@
   display: flex;
   gap: 8px;
 }
+
+.dark-theme .modal-content {
+  background-color: #23272e;
+  color: #fff;
+}
+
+.dark-theme .modal-header,
+.dark-theme .modal-footer {
+  border-color: #444;
+}
+
+.dark-theme .form-control,
+.dark-theme .form-select {
+  background-color: #23272e;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-theme .form-control::placeholder {
+  color: #bbb;
+}
+
+.dark-theme .alarm-item {
+  background: #23272e;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-theme .alarm-item .btn-outline-danger {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.dark-theme .alarm-item .btn-outline-danger:hover {
+  background: #ff6b6b;
+  color: #fff;
+}

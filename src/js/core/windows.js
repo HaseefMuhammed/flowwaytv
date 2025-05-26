@@ -217,17 +217,23 @@ const FlowWindows = {
     
     const windowElement = windowData.element;
     
-    // Add closing animation
+    // Add closing animation and disable pointer events
     windowElement.classList.add('closing');
+    windowElement.style.pointerEvents = 'none';
     
-    // Remove after animation
-    setTimeout(() => {
-      windowElement.remove();
-      delete this.windows[appId];
-      
-      // Notify OS that app is closed
-      FlowOS.closeApp(appId);
-    }, 300);
+    // Remove after animation ends for reliability
+    const onAnimationEnd = (e) => {
+      if (e.animationName === 'windowClose') {
+        windowElement.removeEventListener('animationend', onAnimationEnd);
+        windowElement.remove();
+        delete this.windows[appId];
+        
+        // Notify OS that app is closed
+        FlowOS.closeApp(appId);
+      }
+    };
+    
+    windowElement.addEventListener('animationend', onAnimationEnd);
   },
   
   /**

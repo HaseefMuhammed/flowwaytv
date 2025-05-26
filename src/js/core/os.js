@@ -111,7 +111,6 @@ const FlowOS = {
    */
   initApps() {
     FlowNotes.init();
-    FlowMedia.init();
     FlowBrowser.init();
     FlowWeather.init();
     FlowClock.init();
@@ -255,9 +254,6 @@ const FlowOS = {
     switch (appName) {
       case 'notes':
         FlowNotes.open();
-        break;
-      case 'media':
-        FlowMedia.open();
         break;
       case 'browser':
         FlowBrowser.open();

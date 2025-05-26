@@ -87,6 +87,8 @@ const FlowOS = {
         
         // Update clock on lock screen
         FlowUI.updateClock();
+        // Update lock screen username
+        this.updateLockScreenUsername();
         
         // Set OS as booted
         this.isBooted = true;
@@ -322,6 +324,16 @@ const FlowOS = {
         app.classList.remove('active');
       }
     });
+  },
+  
+  /**
+   * Update the lock screen username display
+   */
+  updateLockScreenUsername() {
+    const lockUsernameText = document.querySelector('.lock-username-text');
+    if (lockUsernameText) {
+      lockUsernameText.textContent = this.settings.username || 'User';
+    }
   }
 };
 

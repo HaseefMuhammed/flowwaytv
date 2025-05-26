@@ -107,6 +107,10 @@ const FlowSettings = {
           FlowOS.settings.username = name;
           FlowStorage.set('username', name);
           FlowUI.showNotification('Profile name updated', 'success');
+          // Update lock screen username immediately
+          if (typeof FlowOS.updateLockScreenUsername === 'function') {
+            FlowOS.updateLockScreenUsername();
+          }
         }
       });
     }

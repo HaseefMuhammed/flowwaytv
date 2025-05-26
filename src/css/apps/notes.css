@@ -21,6 +21,25 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.notes-search input.form-control {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+}
+
+.dark-theme .notes-search input.form-control {
+  background-color: #23272e;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-theme .notes-search input.form-control::placeholder {
+  color: #bbb;
+}
+
 .notes-list {
   flex: 1;
   overflow-y: auto;

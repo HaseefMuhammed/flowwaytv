@@ -111,6 +111,19 @@ const FlowWindows = {
       this.makeWindowResizable(appId);
     }
     
+    // Add resize handle to window if not present
+    if (!windowElement.querySelector('.window-resize-handle')) {
+      const resizeHandle = document.createElement('div');
+      resizeHandle.className = 'window-resize-handle';
+      resizeHandle.style.position = 'absolute';
+      resizeHandle.style.right = '0';
+      resizeHandle.style.bottom = '0';
+      resizeHandle.style.width = '16px';
+      resizeHandle.style.height = '16px';
+      resizeHandle.style.cursor = 'nwse-resize';
+      windowElement.appendChild(resizeHandle);
+    }
+    
     // Return the window element
     return windowElement;
   },
@@ -192,8 +205,9 @@ const FlowWindows = {
     
     const windowElement = windowData.element;
     
+    // Only allow resizing from the bottom-right (se) corner
     $(windowElement).resizable({
-      handles: 'n, e, s, w, ne, se, sw, nw',
+      handles: { se: windowElement.querySelector('.window-resize-handle') },
       minWidth: 320,
       minHeight: 240,
       start: () => {

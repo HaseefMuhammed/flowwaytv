@@ -117,6 +117,8 @@ const FlowOS = {
     FlowClock.init();
     FlowCalculator.init();
     FlowEnteveed.init();
+    FlowDeveloper.init();
+    FlowCalendar.init();
     FlowSettings.init();
   },
   
@@ -271,6 +273,12 @@ const FlowOS = {
         break;
         case 'enteveed':
         FlowEnteveed.open();
+        break;
+        case 'developer':
+        FlowDeveloper.open();
+        break;
+        case 'calendar':
+        FlowCalendar.open();
         break;
       case 'settings':
         FlowSettings.open();

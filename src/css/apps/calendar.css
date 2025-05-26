@@ -1,0 +1,55 @@
+.calendar-container.mac-style {
+  background: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  font-family: "SF Pro Display", "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: white;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-header button {
+  background: #f69906;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.calendar-header button:hover {
+  background: #ffb340;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+
+.calendar-grid div {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  border-radius: 8px;
+}
+
+.calendar-grid .today {
+  background: #f69906;
+  color: white;
+  font-weight: bold;
+}

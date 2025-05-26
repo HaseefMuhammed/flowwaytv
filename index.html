@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="src/css/apps/calculator.css">
   <link rel="stylesheet" href="src/css/apps/settings.css">
   <link rel="stylesheet" href="src/css/apps/enteveed.css">
+  <link rel="stylesheet" href="src/css/apps/developer.css">
+  <link rel="stylesheet" href="src/css/apps/calendar.css">
   <!-- Fontawsome -->
    <link rel="stylesheet" href="src/css/fontawesome-free-6.7.2-web/css/all.min.css">
   <link rel="icon" href="src/images/flowway logo.png" type="image/logo">
@@ -86,6 +88,10 @@
           <div class="dock-icon"><i class="fa-solid fa-clock"></i></div>
           <div class="dock-tooltip">FlowClock</div>
         </div>
+        <div class="dock-app" data-app="calendar">
+         <div class="dock-icon"><i class="fa-solid fa-calendar"></i></div>
+         <div class="dock-tooltip">FlowCalendar</div>
+        </div>
          <div class="dock-app" data-app="calculator">
           <div class="dock-icon"><i class="fa-solid fa-calculator"></i></div>
           <div class="dock-tooltip">FlowCalc</div>
@@ -95,6 +101,10 @@
           <div class="dock-tooltip">FlowEnteVeed</div>
         </div>
         <div class="dock-divider"></div>
+          <div class="dock-app" data-app="developer">
+          <div class="dock-icon">Dev</div>
+          <div class="dock-tooltip">Developer</div>
+        </div>
         <div class="dock-app" data-app="settings">
           <div class="dock-icon"><i class="fa-solid fa-gear"></i></div>
           <div class="dock-tooltip">Settings</div>
@@ -297,6 +307,30 @@
   </div>
 </template>
 
+<template id="developer-app-template">
+  <div class="developer-app">
+    <iframe src="https://haseefmuhammed.netlify.app" frameborder="0" style="width: 100%; height: 100%; border: none;"></iframe>
+  </div>
+</template>
+
+<!-- Template calendar -->
+
+<template id="calendar-app-template">
+  <div class="calendar-container mac-style">
+    <div class="calendar-header">
+      <button id="prev-month">‹</button>
+      <span id="calendar-month-year"></span>
+      <button id="next-month">›</button>
+    </div>
+    <div class="calendar-grid" id="calendar-grid">
+      <!-- Calendar days will be injected here -->
+    </div>
+  </div>
+</template>
+
+
+
+
 
   <template id="settings-app-template">
     <div class="settings-container">
@@ -426,6 +460,8 @@
   <script src="src/js/apps/calculator.js"></script>
   <script src="src/js/apps/settings.js"></script>
   <script src="src/js/apps/enteveed.js"></script>
+  <script src="src/js/apps/developer.js"></script>
+  <script src="src/js/apps/calendar.js"></script>
   
   <script src="src/js/main.js"></script>
 

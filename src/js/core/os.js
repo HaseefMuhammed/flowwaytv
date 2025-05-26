@@ -128,7 +128,12 @@ const FlowOS = {
     // Lock screen click to unlock
     const lockScreen = document.getElementById('lock-screen');
     if (lockScreen) {
-      lockScreen.addEventListener('click', () => this.unlock());
+      lockScreen.addEventListener('click', () => {
+        // Play unlock sound effect
+        const audio = new Audio('public/audio/start.mp3');
+        audio.play();
+        this.unlock();
+      });
     }
     
     // Power menu toggle

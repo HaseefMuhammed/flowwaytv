@@ -100,15 +100,15 @@
 }
 
 .wallpaper-option[data-wallpaper="default"] {
-  background-image: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+  background-image: url('https://lh6.googleusercontent.com/_Z_ksWXiPSWTLWLFVr9-Ph10Wafwffx1gKilmJjAcDHJLmwmjiC3BAJbCilk3TIpjEwznb1YVqszICqCDkqo6_jo1t94JjBl06noQivHfIqVjzjF0t0PVC_djwxfiZvyXQ=w1280');
 }
 
 .wallpaper-option[data-wallpaper="mountains"] {
   background-image: url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
 }
 
-.wallpaper-option[data-wallpaper="abstract"] {
-  background-image: url('https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+.wallpaper-option[data-wallpaper="mountains2"] {
+  background-image: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
 }
 
 .wallpaper-option[data-wallpaper="nature"] {

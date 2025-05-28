@@ -120,7 +120,7 @@ const FlowUI = {
     
     // Predefined wallpapers
     const wallpapers = {
-      default: 'https://lh6.googleusercontent.com/_Z_ksWXiPSWTLWLFVr9-Ph10Wafwffx1gKilmJjAcDHJLmwmjiC3BAJbCilk3TIpjEwznb1YVqszICqCDkqo6_jo1t94JjBl06noQivHfIqVjzjF0t0PVC_djwxfiZvyXQ=w1280',
+      default: 'https://i.postimg.cc/s2CR0ph0/TRY-TO-SCAN-4.png',
       mountains: 'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920',
       mountains2: 'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920',
       nature: 'https://images.pexels.com/photos/1287142/pexels-photo-1287142.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'
